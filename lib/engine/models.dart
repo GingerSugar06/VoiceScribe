@@ -70,8 +70,8 @@ class Store {
 
   Directory get modelsDir => Directory(p.join(support.path, 'models'));
   Directory get binDir => Directory(p.join(support.path, 'bin'));
-  Directory get recordingsDir => Directory(p.join(docs.path, 'Kayitlar'));
-  Directory get transcriptsDir => Directory(p.join(docs.path, 'Transkriptler'));
+  Directory get recordingsDir => Directory(p.join(docs.path, 'Recordings'));
+  Directory get transcriptsDir => Directory(p.join(docs.path, 'Transcripts'));
 
   String modelPath(WhisperModel m, String file) => p.join(modelsDir.path, m.id, file);
   String get vadPath => p.join(modelsDir.path, _vadFile.name);

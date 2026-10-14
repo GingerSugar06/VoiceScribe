@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""assets/icon/app_icon.svg dosyasından simge üretir (Chrome ile işler, Pillow ile ICO'ya çevirir).
+"""Simge üretir: assets/icon/source.png (yapay zekâ görseli) varsa onu, yoksa assets/icon/app_icon.svg dosyasını kullanır (Chrome ile işler, Pillow ile ICO'ya çevirir).
 
 Çıktılar
   assets/icon/app_icon.png                    1024x1024 (şeffaf köşeli)
@@ -39,9 +39,26 @@ def render(png: Path, size: int = 1024):
         )
 
 
+def from_source(src: Path, png: Path):
+    """Yapay zekâyla üretilmiş görsel: kareye kırp, 1024'e getir, köşeleri yuvarla."""
+    from PIL import ImageDraw
+    im = Image.open(src).convert("RGBA")
+    side = min(im.size)
+    left, top = (im.width - side) // 2, (im.height - side) // 2
+    im = im.crop((left, top, left + side, top + side)).resize((1024, 1024), Image.LANCZOS)
+    mask = Image.new("L", (1024, 1024), 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, 1023, 1023], radius=230, fill=255)
+    im.putalpha(mask)
+    im.save(png)
+
+
 def main():
     png = ROOT / "assets" / "icon" / "app_icon.png"
-    render(png)
+    source = ROOT / "assets" / "icon" / "source.png"
+    if source.exists():
+        from_source(source, png)  # assets/icon/source.png varsa SVG yerine o kullanılır
+    else:
+        render(png)
     im = Image.open(png).convert("RGBA")
     if im.size != (1024, 1024):
         im = im.resize((1024, 1024), Image.LANCZOS)

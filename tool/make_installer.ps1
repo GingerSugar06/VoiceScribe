@@ -1,4 +1,4 @@
-﻿# VoiceScribe kurulum sihirbazını (Setup.exe) üretir.
+﻿# Voice Scribe kurulum sihirbazını (Setup.exe) üretir.
 #   powershell -ExecutionPolicy Bypass -File tool\make_installer.ps1
 # Gerekenler: Flutter, Inno Setup 6 (winget install JRSoftware.InnoSetup)
 $ErrorActionPreference = 'Stop'

@@ -1,15 +1,15 @@
-﻿; SesYazi — Windows kurulum sihirbazı (Inno Setup 6)
+﻿; Voice Scribe — Windows kurulum sihirbazı (Inno Setup 6)
 ; Derleme: tool\make_installer.ps1  (ISCC'yi kendisi çağırır)
 
-#define MyAppName "SesYazi"
-#define MyAppExe "ses_yazi.exe"
+#define MyAppName "Voice Scribe"
+#define MyAppExe "voice_scribe.exe"
 #define MyAppVersion "2.0.0"
 #ifndef SourceDir
   #define SourceDir "..\build\windows\x64\runner\Release"
 #endif
 
 [Setup]
-AppId={{2FAFDC22-4F32-5701-93B4-58F0057EB34D}
+AppId={{AAE398E7-F1DE-59A8-AF82-9F36C1DB1415}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppVerName={#MyAppName} {#MyAppVersion}
@@ -17,7 +17,7 @@ DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
 OutputDir=Output
-OutputBaseFilename=SesYazi-Setup-{#MyAppVersion}
+OutputBaseFilename=VoiceScribe-Setup-{#MyAppVersion}
 SetupIconFile=..\windows\runner\resources\app_icon.ico
 UninstallDisplayIcon={app}\{#MyAppExe}
 WizardStyle=modern
